@@ -1827,6 +1827,14 @@
     "@types/react-native" "*"
     "@types/xdate" "*"
 
+"@types/react-native-countdown-component@^2.7.0":
+  version "2.7.0"
+  resolved "https://registry.yarnpkg.com/@types/react-native-countdown-component/-/react-native-countdown-component-2.7.0.tgz#04d09923780eef3573fed9aa2ade8b49dda5985a"
+  integrity sha512-xkYhYbMJ42sQ4xrFOLArDrRBxqrvVfTXTArofeF0CEteR3u/tLJImBpj8PBAujCFoDVZmJIry/JhUHXCsWTDgQ==
+  dependencies:
+    "@types/react" "*"
+    "@types/react-native" "*"
+
 "@types/react-native-vector-icons@^6.4.6":
   version "6.4.12"
   resolved "https://registry.yarnpkg.com/@types/react-native-vector-icons/-/react-native-vector-icons-6.4.12.tgz#4b9c63bf85eb42fca7c5b0a55ec317900e4fb427"
