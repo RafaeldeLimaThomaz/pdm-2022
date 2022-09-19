@@ -9,51 +9,19 @@ import { NavigationContainer } from "@react-navigation/native";
 import { LocaleConfig } from "react-native-calendars";
 import { Icon } from "react-native-elements";
 
+import { languageConfig } from "./src/languageConfig";
+
+import MyAgenda from "./src/screens/MyAgenda";
 import TimeLine from "./src/screens/TimeLine";
 import Recipes from "./src/screens/Recipes";
-import Timer from "./src/screens/Timer";
-import MyAgenda from "./src/screens/MyAgenda";
 import ShoppingList from "./src/screens/ShoppingList";
+import Timer from "./src/screens/Timer";
 
 LocaleConfig.locales["pt"] = {
-  monthNames: [
-    "Janeiro",
-    "Fevereiro",
-    "Março",
-    "Abril",
-    "Maio",
-    "Junho",
-    "Julho",
-    "Agosto",
-    "Setembro",
-    "Outubro",
-    "Novembro",
-    "Dezembro",
-  ],
-  monthNamesShort: [
-    "Jan",
-    "Fev",
-    "Mar",
-    "Abr",
-    "Mai",
-    "Jun",
-    "Jul",
-    "Ago",
-    "Set",
-    "Out",
-    "Nov",
-    "Dez",
-  ],
-  dayNames: [
-    "Domingo",
-    "Segunda",
-    "Terça",
-    "Quarta",
-    "Quinta",
-    "Sexta",
-    "Sábado",
-  ],
-  dayNamesShort: ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"],
+  monthNames: languageConfig.months,
+  monthNamesShort: languageConfig.monthsShort,
+  dayNames: languageConfig.days,
+  dayNamesShort: languageConfig.daysShort,
 };
 
 LocaleConfig.defaultLocale = "pt";
@@ -112,6 +80,7 @@ function CustomDrawerContent(props: any) {
             type="font-awesome"
             color="green"
             size={20}
+            tvParallaxProperties={undefined}
           />
           <DrawerItem
             style={{
@@ -146,6 +115,7 @@ function CustomDrawerContent(props: any) {
             type="entypo"
             color="green"
             size={20}
+            tvParallaxProperties={undefined}
           />
           <DrawerItem
             style={{
@@ -180,6 +150,7 @@ function CustomDrawerContent(props: any) {
             type="font-awesome"
             color="green"
             size={21}
+            tvParallaxProperties={undefined}
           />
           <DrawerItem
             style={{
@@ -213,6 +184,7 @@ function CustomDrawerContent(props: any) {
             type="ionicon"
             color="green"
             size={24}
+            tvParallaxProperties={undefined}
           />
           <DrawerItem
             style={{
@@ -247,6 +219,7 @@ function CustomDrawerContent(props: any) {
             name="timer"
             color="green"
             size={23}
+            tvParallaxProperties={undefined}
           />
           <DrawerItem
             style={{
