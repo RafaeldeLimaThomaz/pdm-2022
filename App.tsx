@@ -1,25 +1,15 @@
 import * as React from "react";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { NavigationContainer } from "@react-navigation/native";
-import { LocaleConfig } from "react-native-calendars";
 
-import { languageConfig } from "./src/languageConfig";
-
+import Home from "./src/screens/Home";
 import MyAgenda from "./src/screens/MyAgenda";
 import TimeLine from "./src/screens/TimeLine";
 import Recipes from "./src/screens/Recipes";
 import ShoppingList from "./src/screens/ShoppingList";
 import Timer from "./src/screens/Timer";
+
 import MenuDrawerContent from "./src/components/MenuDrawerContent";
-
-LocaleConfig.locales["pt"] = {
-  monthNames: languageConfig.months,
-  monthNamesShort: languageConfig.monthsShort,
-  dayNames: languageConfig.days,
-  dayNamesShort: languageConfig.daysShort,
-};
-
-LocaleConfig.defaultLocale = "pt";
 
 const Drawer = createDrawerNavigator();
 
@@ -30,6 +20,7 @@ export default function App() {
         drawerContent={(props) => <MenuDrawerContent {...props} />}
         initialRouteName="Home"
       >
+        <Drawer.Screen name="Home" component={Home} />
         <Drawer.Screen name="Agenda" component={MyAgenda} />
         <Drawer.Screen name="Cronograma" component={TimeLine} />
         <Drawer.Screen name="Receitas" component={Recipes} />

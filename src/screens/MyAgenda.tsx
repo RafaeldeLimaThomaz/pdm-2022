@@ -1,10 +1,19 @@
 import React from "react";
 import { View, StyleSheet, Text } from "react-native";
-import { Agenda } from "react-native-calendars";
+import { Agenda, LocaleConfig } from "react-native-calendars";
 import { Avatar, Card } from "react-native-paper";
 import { Icon } from "react-native-elements";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { languageConfig } from "../languageConfig";
 
+LocaleConfig.locales["pt"] = {
+  monthNames: languageConfig.months,
+  monthNamesShort: languageConfig.monthsShort,
+  dayNames: languageConfig.days,
+  dayNamesShort: languageConfig.daysShort,
+};
+
+LocaleConfig.defaultLocale = "pt";
 const MyAgenda = ({ navigation }: { navigation: any }) => {
   const timeToString = (time: number) => {
     const date = new Date(time);
