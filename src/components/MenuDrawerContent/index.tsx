@@ -1,7 +1,8 @@
-import { View, StyleSheet, useWindowDimensions } from "react-native";
+import { View, useWindowDimensions } from "react-native";
 import { DrawerContentScrollView } from "@react-navigation/drawer";
 import { Icon } from "react-native-elements";
 import { DrawerItem } from "@react-navigation/drawer";
+import styles from "./styles";
 
 export default function index(props: any) {
   const width = useWindowDimensions().width * 0.67;
@@ -9,12 +10,12 @@ export default function index(props: any) {
   return (
     <DrawerContentScrollView
       {...props}
-      contentContainerStyle={styles2.containerMain}
+      contentContainerStyle={styles.containerMain}
     >
-      <View style={styles2.menuContainer}>
+      <View style={styles.menuContainer}>
         <View
           style={[
-            styles2.menuItemsCard,
+            styles.menuItemsCard,
             {
               backgroundColor: "#fff",
               width: width,
@@ -49,7 +50,7 @@ export default function index(props: any) {
 
         <View
           style={[
-            styles2.menuItemsCard,
+            styles.menuItemsCard,
             {
               backgroundColor: "#fff",
               width: width,
@@ -84,7 +85,7 @@ export default function index(props: any) {
 
         <View
           style={[
-            styles2.menuItemsCard,
+            styles.menuItemsCard,
             {
               backgroundColor: "#fff",
               width: width,
@@ -118,7 +119,7 @@ export default function index(props: any) {
         </View>
         <View
           style={[
-            styles2.menuItemsCard,
+            styles.menuItemsCard,
             {
               backgroundColor: "#fff",
               width: width,
@@ -154,7 +155,7 @@ export default function index(props: any) {
         </View>
         <View
           style={[
-            styles2.menuItemsCard,
+            styles.menuItemsCard,
             {
               backgroundColor: "#fff",
               width: width,
@@ -189,31 +190,3 @@ export default function index(props: any) {
     </DrawerContentScrollView>
   );
 }
-
-const styles2 = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-
-  containerMain: {
-    flex: 1,
-    backgroundColor: "#FAFAF0",
-    width: "100%",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-
-  menuContainer: {
-    height: "40%",
-    flexDirection: "column",
-    justifyContent: "space-evenly",
-  },
-  menuItemsCard: {
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 10,
-  },
-});
