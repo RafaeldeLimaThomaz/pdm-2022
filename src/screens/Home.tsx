@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Image } from "react-native";
+import { View } from "react-native";
 import { Card } from "react-native-elements";
 
 const Home = ({ navigation }: { navigation: any }) => {

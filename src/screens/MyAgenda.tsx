@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet, Text } from "react-native";
+import { View, Text } from "react-native";
 import { Agenda, LocaleConfig } from "react-native-calendars";
 import { Avatar, Card } from "react-native-paper";
 import { Icon } from "react-native-elements";
@@ -14,6 +14,7 @@ LocaleConfig.locales["pt"] = {
 };
 
 LocaleConfig.defaultLocale = "pt";
+
 const MyAgenda = ({ navigation }: { navigation: any }) => {
   const timeToString = (time: number) => {
     const date = new Date(time);
@@ -149,11 +150,4 @@ const MyAgenda = ({ navigation }: { navigation: any }) => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: { flex: 1, alignItems: "center", justifyContent: "center" },
-
-  text: {
-    fontWeight: "bold",
-  },
-});
 export default MyAgenda;
