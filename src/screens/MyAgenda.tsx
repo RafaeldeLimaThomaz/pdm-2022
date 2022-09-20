@@ -35,7 +35,7 @@ const MyAgenda = ({ navigation }: { navigation: any }) => {
           const numItems = 1;
           for (let j = 0; j < numItems; j++) {
             items[strTime].push({
-              name: "Xuqui do Belo",
+              name: "Pedido 01",
               height: Math.max(50, Math.floor(Math.random() * 150)),
               day: strTime,
             });

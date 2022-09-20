@@ -1,142 +1,158 @@
 import React from "react";
-import { Text, View, StyleSheet, ScrollView, Button } from "react-native";
+import {
+  View,
+  StyleSheet,
+  ScrollView,
+  Button,
+  useWindowDimensions,
+} from "react-native";
 import { Card, Icon } from "react-native-elements";
 
 const Recipes = ({ navigation }: { navigation: any }) => {
   // error
+  const width = useWindowDimensions().width * 0.8;
+
   return (
     <ScrollView>
       <View style={styles.container}>
-        <Card>
+        <Card containerStyle={{ width: width }}>
+          <Card.Title>MARTA ROCHA</Card.Title>
+          <Card.Divider />
+          <Card.Image
+            style={{ marginBottom: width / 15 }}
+            source={require("../../assets/1.png")}
+          />
+
+          <Button
+            title="ABRIR"
+            onPress={() => {
+              alert("Reservado!");
+            }}
+          />
+        </Card>
+
+        <Card containerStyle={{ width: width }}>
+          <Card.Title>DOIS AMORES</Card.Title>
+          <Card.Divider />
+          <Card.Image
+            style={{ marginBottom: width / 15 }}
+            source={require("../../assets/1.png")}
+          />
+
+          <Button
+            title="ABRIR"
+            onPress={() => {
+              alert("Reservado!");
+            }}
+          />
+        </Card>
+
+        <Card containerStyle={{ width: width }}>
+          <Card.Title>RED VELVET</Card.Title>
+          <Card.Divider />
+          <Card.Image
+            style={{ marginBottom: width / 15 }}
+            source={require("../../assets/1.png")}
+          />
+
+          <Button
+            title="ABRIR"
+            onPress={() => {
+              alert("Reservado!");
+            }}
+          />
+        </Card>
+
+        <Card containerStyle={{ width: width }}>
           <Card.Title>DESTINO PORTUGAL</Card.Title>
           <Card.Divider />
           <Card.Image
-            style={{ padding: 0 }}
+            style={{ marginBottom: width / 15 }}
             source={require("../../assets/1.png")}
           />
-          <Text style={{ marginBottom: 10 }}>
-            Um dos destinos mais procurados onde boa parte da arquitetura do
-            país data dos séculos XVI a XIX.
-          </Text>
+
           <Button
-            icon={
-              <Icon
-                name="airplane-outline"
-                type="ionicon"
-                color="#ffffff"
-                iconStyle={{ marginRight: 10 }}
-                tvParallaxProperties={undefined}
-              />
-            }
-            title="RESERVE AGORA"
+            title="ABRIR"
             onPress={() => {
               alert("Reservado!");
             }}
           />
         </Card>
-        <Card>
-          <Card.Title>DESTINO ESPANHA</Card.Title>
+
+        <Card containerStyle={{ width: width }}>
+          <Card.Title>DESTINO PORTUGAL</Card.Title>
           <Card.Divider />
           <Card.Image
-            style={{ padding: 0 }}
+            style={{ marginBottom: width / 15 }}
             source={require("../../assets/1.png")}
           />
-          <Text style={{ marginBottom: 10 }}>
-            A Espanha é um país em movimento, com mais de vinte séculos de
-            história.
-          </Text>
+
           <Button
-            icon={
-              <Icon
-                name="airplane-outline"
-                type="ionicon"
-                color="#ffffff"
-                iconStyle={{ marginRight: 10 }}
-                tvParallaxProperties={undefined}
-              />
-            }
-            title="RESERVE AGORA"
+            title="ABRIR"
             onPress={() => {
               alert("Reservado!");
             }}
           />
         </Card>
-        <Card>
-          <Card.Title>DESTINO ESPANHA</Card.Title>
+
+        <Card containerStyle={{ width: width }}>
+          <Card.Title>DESTINO PORTUGAL</Card.Title>
           <Card.Divider />
           <Card.Image
-            style={{ padding: 0 }}
+            style={{ marginBottom: width / 15 }}
             source={require("../../assets/1.png")}
           />
-          <Text style={{ marginBottom: 10 }}>
-            A Espanha é um país em movimento, com mais de vinte séculos de
-            história.
-          </Text>
+
           <Button
-            icon={
-              <Icon
-                name="airplane-outline"
-                type="ionicon"
-                color="#ffffff"
-                iconStyle={{ marginRight: 10 }}
-                tvParallaxProperties={undefined}
-              />
-            }
-            title="RESERVE AGORA"
+            title="ABRIR"
             onPress={() => {
               alert("Reservado!");
             }}
           />
         </Card>
-        <Card>
-          <Card.Title>DESTINO ESPANHA</Card.Title>
+
+        <Card containerStyle={{ width: width }}>
+          <Card.Title>DESTINO PORTUGAL</Card.Title>
           <Card.Divider />
           <Card.Image
-            style={{ padding: 0 }}
+            style={{ marginBottom: width / 15 }}
             source={require("../../assets/1.png")}
           />
-          <Text style={{ marginBottom: 10 }}>
-            A Espanha é um país em movimento, com mais de vinte séculos de
-            história.
-          </Text>
+
           <Button
-            icon={
-              <Icon
-                name="airplane-outline"
-                type="ionicon"
-                color="#ffffff"
-                iconStyle={{ marginRight: 10 }}
-                tvParallaxProperties={undefined}
-              />
-            }
-            title="RESERVE AGORA"
+            title="ABRIR"
             onPress={() => {
               alert("Reservado!");
             }}
           />
         </Card>
-        <Card>
-          <Card.Title>DESTINO ESPANHA</Card.Title>
+
+        <Card containerStyle={{ width: width }}>
+          <Card.Title>DESTINO PORTUGAL</Card.Title>
           <Card.Divider />
           <Card.Image
-            style={{ padding: 0 }}
+            style={{ marginBottom: width / 15 }}
             source={require("../../assets/1.png")}
           />
-          <Text style={{ marginBottom: 10 }}>
-            A Espanha é um país em movimento, com mais de vinte séculos de
-            história.
-          </Text>
+
           <Button
-            icon={
-              <Icon
-                name="airplane-outline"
-                type="ionicon"
-                color="#ffffff"
-                iconStyle={{ marginRight: 10 }}
-                tvParallaxProperties={undefined}
-              />
-            }
-            title="RESERVE AGORA"
+            title="ABRIR"
+            onPress={() => {
+              alert("Reservado!");
+            }}
+          />
+        </Card>
+
+        <Card containerStyle={{ width: width }}>
+          <Card.Title>DESTINO PORTUGAL</Card.Title>
+          <Card.Divider />
+          <Card.Image
+            style={{ marginBottom: width / 15 }}
+            source={require("../../assets/1.png")}
+          />
+
+          <Button
+            title="ABRIR"
             onPress={() => {
               alert("Reservado!");
             }}
@@ -152,7 +168,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#FFF",
+    backgroundColor: "#88fada",
   },
 });
 export default Recipes;
