@@ -15,7 +15,7 @@ LocaleConfig.locales["pt"] = {
 
 LocaleConfig.defaultLocale = "pt";
 
-const MyAgenda = ({ navigation }: { navigation: any }) => {
+const MyAgenda = ({}: { navigation: any }) => {
   const timeToString = (time: number) => {
     const date = new Date(time);
     return date.toISOString().split("T")[0];
@@ -70,17 +70,16 @@ const MyAgenda = ({ navigation }: { navigation: any }) => {
                   alignItems: "center",
                 }}
               >
-                <Text style={{ color: "grey" }}>{item.name}</Text>
-                <Text style={{ color: "grey", paddingTop: 5 }}>
-                  {" "}
-                  - Espanhóis
+                <Text style={{ color: "#222222", paddingTop: 10 }}>
+                  {item.name}
                 </Text>
-                <Text style={{ color: "grey", paddingTop: 5 }}>
-                  {" "}
+                <Text style={{ color: "#222222", paddingTop: 5 }}>
+                  {"     "}- Espanhóis
+                </Text>
+                <Text style={{ color: "#222222", paddingTop: 5 }}>
                   - Ingleses
                 </Text>
-                <Text style={{ color: "grey", paddingTop: 5 }}>
-                  {" "}
+                <Text style={{ color: "#222222", paddingTop: 5 }}>
                   - Italianos
                 </Text>
               </View>
