@@ -2,9 +2,12 @@
 
 
 # EasyCake App :cake: :iphone:
-
 Aiding cookers to plan the week!
 
-![](https://github.com/RafaeldeLimaThomaz/pdm-2022/blob/main/assets/calendar.gif)
 
-aheur ha haf ejkfkajw 
+
+## Try it yourself!
+
+This app has been developed for aiding cooks to plan and execute their weekly routine inside and outside the kitchen 
+
+![](https://github.com/RafaeldeLimaThomaz/pdm-2022/blob/main/assets/calendar.gif)
