@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { Card, Icon } from "react-native-elements";
+import Stars from "react-native-stars";
 
 const B = (props) => (
   <Text style={{ fontWeight: "bold" }}>{props.children}</Text>
@@ -18,31 +19,44 @@ const CARDS = [
   {
     id: "1",
     title: "MARTA ROCHA",
-    image: "../../assets/martaRocha.png",
-    text: "",
+    image: require("../../assets/martaRocha.png"),
+    text: (
+      <Text>
+        Combinação deliciosa de creme de <B>ovos</B>, crocante de <B>nozes</B>,
+        suspiro com <B>ameixa</B> e/ou <B>damasco </B>
+        caramelizados
+      </Text>
+    ),
   },
   {
     id: "2",
     title: "DOIS AMORES",
-    image: "../../assets/doisAmores.png",
-    text: "",
+    image: require("../../assets/doisAmores.png"),
+    text: (
+      <Text>
+        Massa de pão-de-ló de <B>chocolate</B>, com recheio de brigadeiro
+        <B> branco</B> e brigadeiro <B>preto</B>, com opcional de{" "}
+        <B>morangos</B>
+      </Text>
+    ),
   },
   {
     id: "3",
     title: "RED VELVET",
-    image: "../../assets/redVelvet.png",
+    image: require("../../assets/redVelvet.png"),
     text: "",
   },
   {
     id: "4",
     title: "RAFAELLO",
-    image: "../../assets/martaRocha.png",
+    image: require("../../assets/doisAmores.png"),
     text: "",
   },
+
   {
     id: "5",
     title: "LIMÃO SICILIANO C/ FRUTAS VERMELHAS",
-    image: "../../assets/martaRocha.png",
+    image: require("../../assets/redVelvet.png"),
     text: "",
   },
 ];
@@ -51,11 +65,7 @@ const Recipes = ({}: { navigation: any }) => {
   const width = useWindowDimensions().width * 0.6;
   const cardWidth = useWindowDimensions().width * 0.9;
 
-  const [images, setimages] = React.useState([
-    require("../../assets/martaRocha.png"),
-    require("../../assets/doisAmores.png"),
-    require("../../assets/redVelvet.png"),
-  ]);
+  const [cards, setCards] = React.useState(CARDS);
 
   const renderItem = ({ item }) => (
     <View style={styles.container}>
@@ -86,18 +96,53 @@ const Recipes = ({}: { navigation: any }) => {
               }}
             >
               <Image
-                source={item}
+                source={item.image}
                 style={{ resizeMode: "contain", width: width * 0.6 }}
               ></Image>
             </View>
           </View>
 
-          <Text style={styles.cardText}>
-            Combinação deliciosa de creme de <B>ovos</B>, crocante de{" "}
-            <B>nozes</B>, suspiro com <B>ameixa</B> e/ou <B>damasco </B>
-            caramelizados.
-          </Text>
+          <Text style={styles.cardText}>{item.text}</Text>
         </View>
+        <View style={{ marginBottom: 10 }}>
+          <Stars
+            default={3}
+            count={5}
+            half={true}
+            fullStar={
+              <Icon
+                name={"star"}
+                color={"white"}
+                size={20}
+                type="entypo"
+                style={styles.myStarStyle}
+                tvParallaxProperties={undefined}
+              />
+            }
+            emptyStar={
+              <Icon
+                name={"star-outline"}
+                type="material-community"
+                color={"white"}
+                size={20}
+                style={[styles.myStarStyle, styles.myEmptyStarStyle]}
+                tvParallaxProperties={undefined}
+              />
+            }
+            halfStar={
+              <Icon
+                name={"star-half"}
+                type="material-community"
+                color={"white"}
+                size={20}
+                style={styles.myStarStyle}
+                tvParallaxProperties={undefined}
+              />
+            }
+          />
+        </View>
+
+        <Card.Divider color="white" width={1} />
         <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
           <TouchableOpacity
             style={{
@@ -138,7 +183,7 @@ const Recipes = ({}: { navigation: any }) => {
 
   return (
     <FlatList
-      data={CARDS}
+      data={cards}
       renderItem={renderItem}
       keyExtractor={(item) => item.id}
     />
@@ -166,6 +211,16 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     textAlign: "justify",
     marginLeft: 15,
+  },
+  myStarStyle: {
+    color: "yellow",
+    backgroundColor: "transparent",
+    textShadowColor: "black",
+    textShadowOffset: { width: 1, height: 1 },
+    textShadowRadius: 2,
+  },
+  myEmptyStarStyle: {
+    color: "white",
   },
 });
 export default Recipes;
