@@ -9,181 +9,104 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { Card, Icon } from "react-native-elements";
-import Stars from "react-native-stars";
-import TextBold from "../components/TextBold";
+import StarCounter from "../components/StarCounter";
 
-const CARDS = [
-  {
-    id: "1",
-    title: "MARTA ROCHA",
-    image: require("../../assets/martaRocha.png"),
-    text: (
-      <Text>
-        Combinação deliciosa de creme de <TextBold>ovos</TextBold>, crocante de{" "}
-        <TextBold>nozes</TextBold>, suspiro com <TextBold>ameixa</TextBold> e/ou{" "}
-        <TextBold>damasco </TextBold>
-        caramelizados
-      </Text>
-    ),
-  },
-  {
-    id: "2",
-    title: "DOIS AMORES",
-    image: require("../../assets/doisAmores.png"),
-    text: (
-      <Text>
-        Massa de pão-de-ló de <TextBold>chocolate</TextBold>, com recheio de
-        brigadeiro
-        <TextBold> branco</TextBold> e brigadeiro <TextBold>preto</TextBold>,
-        com opcional de <TextBold>morangos</TextBold>
-      </Text>
-    ),
-  },
-  {
-    id: "3",
-    title: "RED VELVET",
-    image: require("../../assets/redVelvet.png"),
-    text: "",
-  },
-  {
-    id: "4",
-    title: "RAFAELLO",
-    image: require("../../assets/doisAmores.png"),
-    text: "",
-  },
-
-  {
-    id: "5",
-    title: "LIMÃO SICILIANO C/ FRUTAS VERMELHAS",
-    image: require("../../assets/redVelvet.png"),
-    text: "",
-  },
-];
+import cards, { CardDataProps } from "../data/cards";
 
 const Recipes = ({}: { navigation: any }) => {
   const width = useWindowDimensions().width * 0.6;
   const cardWidth = useWindowDimensions().width * 0.9;
 
-  const [cards, setCards] = React.useState(CARDS);
-
-  const renderItem = ({ item }) => (
-    <View style={styles.container}>
-      <Card
-        containerStyle={{
-          width: cardWidth,
-          backgroundColor: "#EF3762",
-          borderRadius: 10,
-        }}
-      >
-        <Card.Title style={{ color: "white" }}>{item.title}</Card.Title>
-        <Card.Divider color="white" width={1} />
-        <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+  const renderItem = (item: CardDataProps) => {
+    return (
+      <View style={styles.container}>
+        <Card
+          containerStyle={{
+            width: cardWidth,
+            backgroundColor: "#EF3762",
+            borderRadius: 10,
+          }}
+        >
+          <Card.Title style={{ color: "white" }}>{item.title}</Card.Title>
+          <Card.Divider color="white" width={1} />
           <View
-            style={{
-              flexDirection: "column",
-              justifyContent: "space-around",
-            }}
+            style={{ flexDirection: "row", justifyContent: "space-between" }}
           >
             <View
               style={{
-                backgroundColor: "#DDFAF3",
-                marginBottom: width / 15,
-                width: width * 0.6,
-                height: width * 0.6,
-                borderRadius: 5,
-                justifyContent: "center",
+                flexDirection: "column",
+                justifyContent: "space-around",
               }}
             >
-              <Image
-                source={item.image}
-                style={{ resizeMode: "contain", width: width * 0.6 }}
-              ></Image>
+              <View
+                style={{
+                  backgroundColor: "#DDFAF3",
+                  marginBottom: width / 15,
+                  width: width * 0.6,
+                  height: width * 0.6,
+                  borderRadius: 5,
+                  justifyContent: "center",
+                }}
+              >
+                <Image
+                  source={item.image}
+                  style={{ resizeMode: "contain", width: width * 0.6 }}
+                ></Image>
+              </View>
             </View>
+
+            <Text style={styles.cardText}>{item.text}</Text>
+          </View>
+          <View style={{ marginBottom: 10 }}>
+            <StarCounter />
           </View>
 
-          <Text style={styles.cardText}>{item.text}</Text>
-        </View>
-        <View style={{ marginBottom: 10 }}>
-          <Stars
-            default={3}
-            count={5}
-            half={true}
-            fullStar={
-              <Icon
-                name={"star"}
-                color={"white"}
-                size={20}
-                type="entypo"
-                style={styles.myStarStyle}
-                tvParallaxProperties={undefined}
-              />
-            }
-            emptyStar={
-              <Icon
-                name={"star-outline"}
-                type="material-community"
-                color={"white"}
-                size={20}
-                style={{ ...styles.myStarStyle, ...styles.myEmptyStarStyle }}
-                tvParallaxProperties={undefined}
-              />
-            }
-            halfStar={
-              <Icon
-                name={"star-half"}
-                type="material-community"
-                color={"white"}
-                size={20}
-                style={styles.myStarStyle}
-                tvParallaxProperties={undefined}
-              />
-            }
-          />
-        </View>
-
-        <Card.Divider color="white" width={1} />
-        <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-          <TouchableOpacity
-            style={{
-              backgroundColor: "white",
-              width: width * 0.6,
-              height: width / 6,
-              borderRadius: 50,
-              justifyContent: "center",
-              alignItems: "center",
-            }}
+          <Card.Divider color="white" width={1} />
+          <View
+            style={{ flexDirection: "row", justifyContent: "space-between" }}
           >
-            <Text style={{ color: "black", fontWeight: "bold" }}>ABRIR</Text>
-          </TouchableOpacity>
+            <TouchableOpacity
+              style={{
+                backgroundColor: "white",
+                width: width * 0.6,
+                height: width / 6,
+                borderRadius: 50,
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Text style={{ color: "black", fontWeight: "bold" }}>ABRIR</Text>
+            </TouchableOpacity>
 
-          <TouchableOpacity style={styles.touchableIcon}>
-            <Icon
-              name="edit"
-              size={20}
-              type="feather"
-              color="green"
-              tvParallaxProperties={undefined}
-            ></Icon>
-          </TouchableOpacity>
+            <TouchableOpacity style={styles.touchableIcon}>
+              <Icon
+                name="edit"
+                size={20}
+                type="feather"
+                color="green"
+                tvParallaxProperties={undefined}
+              ></Icon>
+            </TouchableOpacity>
 
-          <TouchableOpacity style={styles.touchableIcon}>
-            <Icon
-              name="trash"
-              size={20}
-              type="feather"
-              color="#EF3762"
-              tvParallaxProperties={undefined}
-            ></Icon>
-          </TouchableOpacity>
-        </View>
-      </Card>
-    </View>
-  );
+            <TouchableOpacity style={styles.touchableIcon}>
+              <Icon
+                name="trash"
+                size={20}
+                type="feather"
+                color="#EF3762"
+                tvParallaxProperties={undefined}
+              ></Icon>
+            </TouchableOpacity>
+          </View>
+        </Card>
+      </View>
+    );
+  };
 
   return (
     <FlatList
       data={cards}
-      renderItem={renderItem}
+      renderItem={({ item }) => renderItem(item)}
       keyExtractor={(item) => item.id}
     />
   );
@@ -211,15 +134,6 @@ const styles = StyleSheet.create({
     textAlign: "justify",
     marginLeft: 15,
   },
-  myStarStyle: {
-    color: "yellow",
-    backgroundColor: "transparent",
-    textShadowColor: "black",
-    textShadowOffset: { width: 1, height: 1 },
-    textShadowRadius: 2,
-  },
-  myEmptyStarStyle: {
-    color: "white",
-  },
 });
+
 export default Recipes;
