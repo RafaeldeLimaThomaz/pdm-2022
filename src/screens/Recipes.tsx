@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import {
   View,
   Text,
@@ -10,10 +10,7 @@ import {
 } from "react-native";
 import { Card, Icon } from "react-native-elements";
 import Stars from "react-native-stars";
-
-const B = (props) => (
-  <Text style={{ fontWeight: "bold" }}>{props.children}</Text>
-);
+import TextBold from "../components/TextBold";
 
 const CARDS = [
   {
@@ -22,8 +19,9 @@ const CARDS = [
     image: require("../../assets/martaRocha.png"),
     text: (
       <Text>
-        Combinação deliciosa de creme de <B>ovos</B>, crocante de <B>nozes</B>,
-        suspiro com <B>ameixa</B> e/ou <B>damasco </B>
+        Combinação deliciosa de creme de <TextBold>ovos</TextBold>, crocante de{" "}
+        <TextBold>nozes</TextBold>, suspiro com <TextBold>ameixa</TextBold> e/ou{" "}
+        <TextBold>damasco </TextBold>
         caramelizados
       </Text>
     ),
@@ -34,9 +32,10 @@ const CARDS = [
     image: require("../../assets/doisAmores.png"),
     text: (
       <Text>
-        Massa de pão-de-ló de <B>chocolate</B>, com recheio de brigadeiro
-        <B> branco</B> e brigadeiro <B>preto</B>, com opcional de{" "}
-        <B>morangos</B>
+        Massa de pão-de-ló de <TextBold>chocolate</TextBold>, com recheio de
+        brigadeiro
+        <TextBold> branco</TextBold> e brigadeiro <TextBold>preto</TextBold>,
+        com opcional de <TextBold>morangos</TextBold>
       </Text>
     ),
   },
@@ -125,7 +124,7 @@ const Recipes = ({}: { navigation: any }) => {
                 type="material-community"
                 color={"white"}
                 size={20}
-                style={[styles.myStarStyle, styles.myEmptyStarStyle]}
+                style={{ ...styles.myStarStyle, ...styles.myEmptyStarStyle }}
                 tvParallaxProperties={undefined}
               />
             }
