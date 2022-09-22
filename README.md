@@ -12,7 +12,7 @@ This app has been developed for aiding cooks plan and execute their weekly routi
 
 ## Home
 
-<img src="https://github.com/RafaeldeLimaThomaz/pdm-2022/blob/main/assets/Home.gif" width="20%" height="20%"/>
+<img src="https://github.com/RafaeldeLimaThomaz/pdm-2022/blob/main/assets/Home.gif" width="25%" height="25%"/>
 
 
 
