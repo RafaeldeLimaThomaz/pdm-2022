@@ -2,6 +2,7 @@
 
 
 # EasyCake App :cake: :iphone:
+
 Aiding pastry chefs plan the week!
 
 
@@ -12,19 +13,30 @@ This app has been developed for aiding cooks plan and execute their weekly routi
 
 ## Home
 
+This is Welcome Screen. This app is based on a side navigator.
+
+
 <img src="https://github.com/RafaeldeLimaThomaz/pdm-2022/blob/main/assets/Home.gif" width="25%" height="25%"/>
 
 
 
 ## Agenda
 
+This feature allows users to schedule their delivery days. Notifications are sent to users one day before the due date.
+
+
 <img src="https://github.com/RafaeldeLimaThomaz/pdm-2022/blob/main/assets/Agenda.gif" width="25%" height="25%"/>
 
 
 ## Recipes
 
+This screen stores recipes and customer feedback
+
+
 <img src="https://github.com/RafaeldeLimaThomaz/pdm-2022/blob/main/assets/Recipes.gif" width="25%" height="25%"/>
 
 ## Timer
+
+Timer feature allows users to keep track of cooking time of different ingredients
 
 <img src="https://github.com/RafaeldeLimaThomaz/pdm-2022/blob/main/assets/Timer.gif" width="25%" height="25%"/>
