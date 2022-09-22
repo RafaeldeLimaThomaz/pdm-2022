@@ -12,7 +12,8 @@ This app has been developed for aiding cooks plan and execute their weekly routi
 
 ## Home
 
-![](https://github.com/RafaeldeLimaThomaz/pdm-2022/blob/main/assets/Home.gif)
+<img src="https://github.com/RafaeldeLimaThomaz/pdm-2022/blob/main/assets/Home.gif" width="50%" height="50%"/>
+
 
 
 ## Agenda
