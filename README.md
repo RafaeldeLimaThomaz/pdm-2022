@@ -12,17 +12,17 @@ This app has been developed for aiding cooks plan and execute their weekly routi
 
 ## Home
 
-![](https://github.com/RafaeldeLimaThomaz/pdm-2022/blob/main/assets/calendar.gif)
+![](https://github.com/RafaeldeLimaThomaz/pdm-2022/blob/main/assets/Home.gif)
 
 
 ## Agenda
 
-![]([https://github.com/RafaeldeLimaThomaz/pdm-2022/blob/main/assets/calendar.gif](https://github.com/RafaeldeLimaThomaz/pdm-2022/blob/main/assets/Agenda.gif)
+![](https://github.com/RafaeldeLimaThomaz/pdm-2022/blob/main/assets/Agenda.gif)
 
 ## Recipes
 
-![]([https://github.com/RafaeldeLimaThomaz/pdm-2022/blob/main/assets/calendar.gif](https://github.com/RafaeldeLimaThomaz/pdm-2022/blob/main/assets/Recipes.gif)
+![](https://github.com/RafaeldeLimaThomaz/pdm-2022/blob/main/assets/Recipes.gif)
 
 ## Timer
 
-![]([https://github.com/RafaeldeLimaThomaz/pdm-2022/blob/main/assets/calendar.gif](https://github.com/RafaeldeLimaThomaz/pdm-2022/blob/main/assets/Timer.gif)
+![](https://github.com/RafaeldeLimaThomaz/pdm-2022/blob/main/assets/Timer.gif)
