@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React from "react";
 import {
   View,
   Text,
@@ -40,7 +40,7 @@ const Recipes = ({}: { navigation: any }) => {
             >
               <View
                 style={{
-                  backgroundColor: "#DDFAF3",
+                  backgroundColor: item.backColor,
                   marginBottom: width / 15,
                   width: width * 0.6,
                   height: width * 0.6,
