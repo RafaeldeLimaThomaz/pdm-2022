@@ -40,3 +40,8 @@ This screen stores recipes and customer feedback
 Timer feature allows users to keep track of cooking time of different ingredients
 
 <img src="https://github.com/RafaeldeLimaThomaz/pdm-2022/blob/main/assets/Timer.gif" width="30%" height="30%"/>
+
+
+## TimeLine
+
+<img src="https://github.com/RafaeldeLimaThomaz/pdm-2022/blob/main/assets/TimeLine.png" width="50%" height="50%"/>
