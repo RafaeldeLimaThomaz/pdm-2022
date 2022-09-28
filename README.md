@@ -44,4 +44,4 @@ Timer feature allows users to keep track of cooking time of different ingredient
 
 ## TimeLine
 
-<img src="https://github.com/RafaeldeLimaThomaz/pdm-2022/blob/main/assets/TimeLine.png" width="50%" height="50%"/>
+<img src="https://github.com/RafaeldeLimaThomaz/pdm-2022/blob/main/assets/TimeLine.png" width="80%" height="80%"/>
