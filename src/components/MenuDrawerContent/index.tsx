@@ -27,7 +27,7 @@ export default function index(props: any) {
           <Icon
             containerStyle={{ paddingLeft: 15 }}
             name="calendar"
-            type="font-awesome"
+            type="entypo"
             color="green"
             size={20}
             tvParallaxProperties={undefined}
@@ -97,7 +97,7 @@ export default function index(props: any) {
           <Icon
             containerStyle={{ paddingLeft: 15 }}
             name="book"
-            type="font-awesome"
+            type="entypo"
             color="green"
             size={21}
             tvParallaxProperties={undefined}

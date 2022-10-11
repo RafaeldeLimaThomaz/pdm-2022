@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -10,12 +10,24 @@ import {
 } from "react-native";
 import { Card, Icon } from "react-native-elements";
 import StarCounter from "../components/StarCounter";
-
+import SearchBar from "react-native-dynamic-search-bar";
 import cards, { CardDataProps } from "../data/cards";
 
-const Recipes = ({}: { navigation: any }) => {
+interface RecipesProps {
+  searchBarVisible: boolean;
+}
+
+const Recipes = ({ searchBarVisible }: RecipesProps) => {
   const width = useWindowDimensions().width * 0.6;
   const cardWidth = useWindowDimensions().width * 0.9;
+  const [filteredCards, setFilteredCards] = useState(cards);
+  const filterCards = (text: string) => {
+    const filteredResult = cards.filter((card: CardDataProps) =>
+      card.title.toLowerCase().includes(text.toLowerCase())
+    );
+
+    setFilteredCards(filteredResult);
+  };
 
   const renderItem = (item: CardDataProps) => {
     return (
@@ -104,11 +116,45 @@ const Recipes = ({}: { navigation: any }) => {
   };
 
   return (
-    <FlatList
-      data={cards}
-      renderItem={({ item }) => renderItem(item)}
-      keyExtractor={(item) => item.id}
-    />
+    <View style={styles.container}>
+      {searchBarVisible && (
+        <SearchBar
+          style={{
+            marginTop: 15,
+            marginBottom: 10,
+            backgroundColor: "#EF3762",
+          }}
+          textInputStyle={styles.textInput}
+          placeholderTextColor="#FAD3D9"
+          onChangeText={filterCards}
+          onClearPress={() => setFilteredCards(cards)}
+          searchIconComponent={
+            <Icon
+              name="search"
+              size={20}
+              type="feather"
+              color="white"
+              tvParallaxProperties={undefined}
+            ></Icon>
+          }
+          clearIconComponent={
+            <Icon
+              name="x"
+              size={20}
+              type="feather"
+              color="white"
+              tvParallaxProperties={undefined}
+            ></Icon>
+          }
+          placeholder="Pesquisar receita"
+        />
+      )}
+      <FlatList
+        data={filteredCards}
+        renderItem={({ item }) => renderItem(item)}
+        keyExtractor={(item) => item.id}
+      />
+    </View>
   );
 };
 
@@ -133,6 +179,9 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     textAlign: "justify",
     marginLeft: 15,
+  },
+  textInput: {
+    color: "white",
   },
 });
 
