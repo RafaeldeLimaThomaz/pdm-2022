@@ -19,7 +19,7 @@ const Recipes = ({}: { navigation: any }) => {
   const cardWidth = useWindowDimensions().width * 0.9;
 
   const [filteredCards, setFilteredCards] = useState(cards);
-  const searchBar = useContext(AppContext);
+  const searchBarContext = useContext(AppContext);
 
   const filterCards = (text: string) => {
     const filteredResult = cards.filter((card: CardDataProps) =>
@@ -117,7 +117,7 @@ const Recipes = ({}: { navigation: any }) => {
 
   return (
     <View style={styles.container}>
-      {searchBar && (
+      {searchBarContext && (
         <SearchBar
           style={{
             marginTop: 15,
