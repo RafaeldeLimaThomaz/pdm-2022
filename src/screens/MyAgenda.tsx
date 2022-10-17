@@ -1,6 +1,11 @@
 import React from "react";
 import { View, Text } from "react-native";
-import { Agenda, LocaleConfig } from "react-native-calendars";
+import {
+  Agenda,
+  AgendaSchedule,
+  DateData,
+  LocaleConfig,
+} from "react-native-calendars";
 import { Avatar, Card } from "react-native-paper";
 import { Icon } from "react-native-elements";
 import { TouchableOpacity } from "react-native-gesture-handler";
@@ -51,7 +56,7 @@ const MyAgenda = ({}: { navigation: any }) => {
     }, 1000);
   };
 
-  const renderItem = (item) => {
+  const renderItem = (item: { name: string }) => {
     return (
       <View style={{ marginRight: 10, marginTop: 17 }}>
         <Card style={{ backgroundColor: "#faffef" }}>
