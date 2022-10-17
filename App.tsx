@@ -10,6 +10,7 @@ import Recipes from "./src/screens/Recipes";
 import ShoppingList from "./src/screens/ShoppingList";
 import Timer from "./src/screens/Timer";
 import CreateRecipe from "./src/screens/CreateRecipe";
+import RecipeDetails from "./src/screens/RecipeDetails";
 
 import MenuDrawerContent from "./src/components/MenuDrawerContent";
 import { TouchableOpacity } from "react-native-gesture-handler";
@@ -113,6 +114,7 @@ export default function App() {
             <Drawer.Screen name="Lista de compras" component={ShoppingList} />
             <Drawer.Screen name="Timer" component={Timer} />
             <Drawer.Screen name="Criar Receita" component={CreateRecipe} />
+            <Drawer.Screen name="Receita Detalhada" component={RecipeDetails} />
           </Drawer.Navigator>
         </NavigationContainer>
       </AppContext.Provider>

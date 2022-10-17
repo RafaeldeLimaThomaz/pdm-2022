@@ -89,7 +89,9 @@ const Recipes = ({ navigation }: { navigation: any }) => {
                 alignItems: "center",
               }}
               onPress={() => {
-                alert("Abrir!");
+                navigation.navigate("Receita Detalhada", {
+                  body: "Receita Detalhada",
+                });
               }}
             >
               <Text style={{ color: "black", fontWeight: "bold" }}>ABRIR</Text>

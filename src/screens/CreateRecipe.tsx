@@ -10,7 +10,7 @@ import StarCounter from "../components/StarCounter";
 import { Card, Icon } from "react-native-elements";
 
 const Recipes = ({}: { navigation: any }) => {
-  const [title, onChangeText] = React.useState("");
+  const [title, LonChangeText] = React.useState("");
   const [description, onChangeNumber] = React.useState("");
   const cardWidth = useWindowDimensions().width * 0.9;
   const width = useWindowDimensions().width * 0.6;
@@ -27,8 +27,9 @@ const Recipes = ({}: { navigation: any }) => {
         <TextInput
           style={styles.titleInput}
           placeholder="Nome"
+          textAlign={"center"}
           placeholderTextColor={"white"}
-          onChangeText={onChangeText}
+          onChangeText={undefined}
           value={title}
         />
 
@@ -78,7 +79,7 @@ const Recipes = ({}: { navigation: any }) => {
             placeholder={"Descrição"}
             placeholderTextColor={"white"}
             textAlign={"center"}
-            onChangeText={() => {}}
+            onChangeText={undefined}
             value={description}
           ></TextInput>
         </View>
