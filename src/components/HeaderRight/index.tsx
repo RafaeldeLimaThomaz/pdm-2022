@@ -5,7 +5,7 @@ import { NavigationContext, useNavigation } from "@react-navigation/native";
 import { AppContext, AppContextProps } from "../../contexts/AppContext";
 
 export default function HeaderRight() {
-  const navigation = React.useContext(NavigationContext);
+  const navigation = useContext(NavigationContext);
 
   const appContext = useContext<AppContextProps>(AppContext);
 
