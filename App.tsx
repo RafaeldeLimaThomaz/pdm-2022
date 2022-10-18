@@ -1,6 +1,6 @@
 import * as React from "react";
 import { createDrawerNavigator } from "@react-navigation/drawer";
-import { NavigationContainer } from "@react-navigation/native";
+import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import { Icon } from "react-native-elements";
 
 import Home from "./src/screens/Home";
@@ -15,11 +15,11 @@ import RecipeDetails from "./src/screens/RecipeDetails";
 import MenuDrawerContent from "./src/components/MenuDrawerContent";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { View } from "react-native";
-import AppContext from "./src/contexts/AppContext";
-import AddRecipeContext from "./src/contexts/AddRecipeContext";
+import { AppContext } from "./src/contexts/AppContext";
 
 import config from "./src/database/config";
 import { createConnection } from "typeorm";
+import HeaderRight from "./src/components/HeaderRight";
 
 const Drawer = createDrawerNavigator();
 
@@ -54,70 +54,36 @@ export default function App() {
   }, []);
 
   const [searchBarVisible, setSearchBarVisible] = React.useState(false);
-  const [addRecipe, setAddRecipe] = React.useState(false);
+
+  const appContext = {
+    searchBarVisible,
+    setSearchBarVisible,
+  };
+
   return (
-    <AddRecipeContext.Provider value={addRecipe}>
-      <AppContext.Provider value={searchBarVisible}>
-        <NavigationContainer>
-          <Drawer.Navigator
-            drawerContent={(props) => <MenuDrawerContent {...props} />}
-            initialRouteName="Home"
-          >
-            <Drawer.Screen name="Home" component={Home} />
-            <Drawer.Screen name="Agenda" component={MyAgenda} />
-            <Drawer.Screen name="Cronograma" component={TimeLine} />
-            <Drawer.Screen
-              name="Receitas"
-              component={Recipes}
-              options={{
-                headerRight: () => (
-                  <View style={{ flexDirection: "row" }}>
-                    <TouchableOpacity
-                      style={{
-                        marginRight: 40,
-                      }}
-                      onPress={() => {
-                        setSearchBarVisible(!searchBarVisible);
-                      }}
-                    >
-                      <Icon
-                        name="search"
-                        size={23}
-                        type="material"
-                        color={"black"}
-                        tvParallaxProperties={undefined}
-                      ></Icon>
-                    </TouchableOpacity>
+    <AppContext.Provider value={appContext}>
+      <NavigationContainer>
+        <Drawer.Navigator
+          drawerContent={(props) => <MenuDrawerContent {...props} />}
+          initialRouteName="Home"
+        >
+          <Drawer.Screen name="Home" component={Home} />
+          <Drawer.Screen name="Agenda" component={MyAgenda} />
+          <Drawer.Screen name="Cronograma" component={TimeLine} />
+          <Drawer.Screen
+            name="Receitas"
+            component={Recipes}
+            options={{
+              headerRight: () => <HeaderRight />,
+            }}
+          />
 
-                    <TouchableOpacity
-                      style={{
-                        marginRight: 25,
-                      }}
-                      onPress={() => {
-                        setAddRecipe(!addRecipe);
-                        console.log(addRecipe);
-                      }}
-                    >
-                      <Icon
-                        name="plus"
-                        size={23}
-                        type="entypo"
-                        color={"black"}
-                        tvParallaxProperties={undefined}
-                      ></Icon>
-                    </TouchableOpacity>
-                  </View>
-                ),
-              }}
-            />
-
-            <Drawer.Screen name="Lista de compras" component={ShoppingList} />
-            <Drawer.Screen name="Timer" component={Timer} />
-            <Drawer.Screen name="Criar Receita" component={CreateRecipe} />
-            <Drawer.Screen name="Receita Detalhada" component={RecipeDetails} />
-          </Drawer.Navigator>
-        </NavigationContainer>
-      </AppContext.Provider>
-    </AddRecipeContext.Provider>
+          <Drawer.Screen name="Lista de compras" component={ShoppingList} />
+          <Drawer.Screen name="Timer" component={Timer} />
+          <Drawer.Screen name="Criar Receita" component={CreateRecipe} />
+          <Drawer.Screen name="Receita Detalhada" component={RecipeDetails} />
+        </Drawer.Navigator>
+      </NavigationContainer>
+    </AppContext.Provider>
   );
 }

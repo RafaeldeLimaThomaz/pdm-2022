@@ -12,8 +12,7 @@ import { Card, Icon } from "react-native-elements";
 import StarCounter from "../components/StarCounter";
 import SearchBar from "react-native-dynamic-search-bar";
 import cards, { CardDataProps } from "../data/cards";
-import AppContext from "../contexts/AppContext";
-import AddRecipeContext from "../contexts/AddRecipeContext";
+import { AppContext, AppContextProps } from "../contexts/AppContext";
 
 const Recipes = ({ navigation }: { navigation: any }) => {
   const width = useWindowDimensions().width * 0.6;
@@ -21,12 +20,7 @@ const Recipes = ({ navigation }: { navigation: any }) => {
 
   const [filteredCards, setFilteredCards] = useState(cards);
 
-  const searchBarVisible = useContext(AppContext);
-  const addRecipe = useContext(AddRecipeContext);
-
-  useEffect(() => {
-    navigation.navigate("Criar Receita", { body: "Criar Receita" });
-  }, [addRecipe]);
+  const appContext = useContext<AppContextProps>(AppContext);
 
   const filterCards = (text: string) => {
     const filteredResult = cards.filter((card: CardDataProps) =>
@@ -132,7 +126,7 @@ const Recipes = ({ navigation }: { navigation: any }) => {
 
   return (
     <View style={styles.container}>
-      {searchBarVisible && (
+      {appContext.searchBarVisible && (
         <SearchBar
           style={{
             marginTop: 15,

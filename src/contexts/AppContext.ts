@@ -1,5 +1,11 @@
 import { createContext } from "react";
 
-const AppContext = createContext(false);
+export interface AppContextProps {
+  searchBarVisible: boolean;
+  setSearchBarVisible: Function;
+}
 
-export default AppContext;
+export const AppContext = createContext<AppContextProps>({
+  searchBarVisible: false,
+  setSearchBarVisible: () => {},
+});
