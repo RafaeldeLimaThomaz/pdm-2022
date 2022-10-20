@@ -1,7 +1,6 @@
 import * as React from "react";
 import { createDrawerNavigator } from "@react-navigation/drawer";
-import { NavigationContainer, useNavigation } from "@react-navigation/native";
-import { Icon } from "react-native-elements";
+import { NavigationContainer } from "@react-navigation/native";
 
 import Home from "./src/screens/Home";
 import MyAgenda from "./src/screens/MyAgenda";
@@ -13,8 +12,6 @@ import CreateRecipe from "./src/screens/CreateRecipe";
 import RecipeDetails from "./src/screens/RecipeDetails";
 
 import MenuDrawerContent from "./src/components/MenuDrawerContent";
-import { TouchableOpacity } from "react-native-gesture-handler";
-import { View } from "react-native";
 import { AppContext } from "./src/contexts/AppContext";
 
 import config from "./src/database/config";
