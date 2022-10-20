@@ -23,94 +23,99 @@ const Item = function ({ item }: ItemProps) {
   const navigation = useContext(NavigationContext);
 
   const width = useWindowDimensions().width * 0.6;
-  const cardWidth = useWindowDimensions().width * 0.9;
+  // const cardWidth = useWindowDimensions().width * 0.9;
 
   return (
-    <Card
-      containerStyle={{
-        width: cardWidth,
-        backgroundColor: "#EF3762",
-        borderRadius: 10,
+    <View
+      style={{
+        padding: "3%", // change here to adjust. number is also available: +- 28
       }}
     >
-      <Card.Title style={{ color: "white" }}>{item.title}</Card.Title>
-      <Card.Divider color="white" width={1} />
-      <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-        <Image
-          source={item.image}
-          style={{
-            resizeMode: "contain",
-            width: width * 0.6,
-            backgroundColor: item.backColor,
-            marginBottom: width / 15,
-            height: width * 0.6,
-            borderRadius: 10,
-            justifyContent: "center",
-          }}
-        ></Image>
-
-        <Text style={styles.cardText}>{item.text}</Text>
-      </View>
-
-      <View style={{ marginBottom: 10 }}>
-        <StarCounter />
-      </View>
-
-      <Card.Divider color="white" width={1} />
-      <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "space-between",
-          alignItems: "center",
+      <Card
+        containerStyle={{
+          backgroundColor: "#EF3762",
+          borderRadius: 10,
         }}
       >
-        <TouchableOpacity
+        <Card.Title style={{ color: "white" }}>{item.title}</Card.Title>
+        <Card.Divider color="white" width={1} />
+        <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+          <Image
+            source={item.image}
+            style={{
+              resizeMode: "contain",
+              width: width * 0.6,
+              backgroundColor: item.backColor,
+              marginBottom: width / 15,
+              height: width * 0.6,
+              borderRadius: 10,
+              justifyContent: "center",
+            }}
+          ></Image>
+
+          <Text style={styles.cardText}>{item.text}</Text>
+        </View>
+
+        <View style={{ marginBottom: 10 }}>
+          <StarCounter />
+        </View>
+
+        <Card.Divider color="white" width={1} />
+        <View
           style={{
-            backgroundColor: "white",
-            width: width * 0.6,
-            height: width / 6,
-            borderRadius: 50,
-            justifyContent: "center",
+            flexDirection: "row",
+            justifyContent: "space-between",
             alignItems: "center",
           }}
-          onPress={() => {
-            navigation?.navigate("Receita Detalhada", {
-              body: "Receita Detalhada",
-            });
-          }}
         >
-          <Text style={{ color: "black", fontWeight: "bold" }}>ABRIR</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity>
-          <Icon
-            name="edit"
-            size={20}
-            type="feather"
-            color="green"
-            raised
-            onPress={() => {
-              alert("Edit");
+          <TouchableOpacity
+            style={{
+              backgroundColor: "white",
+              width: width * 0.6,
+              height: width / 6,
+              borderRadius: 50,
+              justifyContent: "center",
+              alignItems: "center",
             }}
-            tvParallaxProperties={undefined}
-          ></Icon>
-        </TouchableOpacity>
-
-        <TouchableOpacity>
-          <Icon
-            name="trash"
-            size={20}
-            raised
             onPress={() => {
-              alert("Excluir");
+              navigation?.navigate("Receita Detalhada", {
+                body: "Receita Detalhada",
+              });
             }}
-            type="feather"
-            color="#EF3762"
-            tvParallaxProperties={undefined}
-          ></Icon>
-        </TouchableOpacity>
-      </View>
-    </Card>
+          >
+            <Text style={{ color: "black", fontWeight: "bold" }}>ABRIR</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity>
+            <Icon
+              name="edit"
+              size={20}
+              type="feather"
+              color="green"
+              raised
+              onPress={() => {
+                alert("Edit");
+              }}
+              tvParallaxProperties={undefined}
+            ></Icon>
+          </TouchableOpacity>
+
+          <TouchableOpacity>
+            <Icon
+              name="trash"
+              size={20}
+              raised
+              onPress={() => {
+                alert("Excluir");
+              }}
+              type="feather"
+              color="#EF3762"
+              tvParallaxProperties={undefined}
+            ></Icon>
+          </TouchableOpacity>
+        </View>
+      </Card>
+    </View>
   );
 };
 
@@ -174,6 +179,10 @@ const Recipes = () => {
           renderItem={({ item }) => <Item item={item} />}
           keyExtractor={(item) => item.id}
           estimatedItemSize={100}
+          style={{
+            width: "100%",
+            margin: 0,
+          }}
         />
       </View>
     </View>
