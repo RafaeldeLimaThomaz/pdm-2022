@@ -179,10 +179,6 @@ const Recipes = () => {
           renderItem={({ item }) => <Item item={item} />}
           keyExtractor={(item) => item.id}
           estimatedItemSize={100}
-          style={{
-            width: "100%",
-            margin: 0,
-          }}
         />
       </View>
     </View>

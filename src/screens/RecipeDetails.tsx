@@ -21,7 +21,7 @@ const RecipeDetails = ({ navigation }: { navigation: any }) => {
           style={{ flexDirection: "column", justifyContent: "space-between" }}
         >
           <Text style={styles.textTitle}>Ingredientes</Text>
-          <Text style={styles.textBody}> • 01 Copo de suco </Text>
+          <Text style={styles.textBody}> • 01 Copo de SUKO </Text>
           <Text style={styles.textBody}> • 200 g de ovo </Text>
           <Text style={styles.textBody}> • 100 ml de ureia </Text>
           <Text style={styles.textBody}> • Xanadu </Text>

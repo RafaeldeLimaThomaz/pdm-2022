@@ -26,22 +26,46 @@ export default function App() {
     try {
       const connection = await createConnection(config); // create a connection with our config
 
-      await connection.getRepository("Recipe").save({
-        title: "Marta Rocha",
-      });
+      // await connection.getRepository("Recipe").save({
+      //   title: "Marta Rocha",
+      // });
 
-      await connection.getRepository("Recipe").save({
-        title: "Limão Siciliano",
-      });
+      // await connection.getRepository("Recipe").save({
+      //   title: "Limão Siciliano",
+      // });
 
-      await connection.getRepository("Recipe").save({
-        title: "Chocolatudo",
-      });
+      // await connection.getRepository("Recipe").save({
+      //   title: "Chocolatudo",
+      // });
 
-      const cakes = await connection.getRepository("Recipe").find();
-      console.log(cakes);
-    } catch (err) {
-      console.log(err); // check (or deal) with connection errors
+      // await connection.getRepository("Ingredient").save({
+      //   title: "leite condensado",
+      // });
+      // await connection.query("DELETE FROM ingredient");
+
+      // await connection.getRepository("Ingredient").save({
+      //   title: "creme de leite",
+      // });
+
+      // await connection.getRepository("Ingredient").save({
+      //   title: "chocolate preto ao leite",
+      // });
+
+      // await connection.getRepository("Ingredient").save({
+      //   title: "chocolate preto meio amargo",
+      // });
+
+      // await connection.getRepository("Ingredient").save({
+      //   title: "chocolate branco",
+      // });
+
+      //await connection.query("DELETE FROM ingredient WHERE id = 3");
+
+      //const cakes = await connection.getRepository("Recipe").find();
+      const ingredients = await connection.getRepository("Ingredient").find();
+      console.log(ingredients);
+    } catch (error) {
+      console.log(error); // check (or deal) with connection errors
     }
   }, []);
 
