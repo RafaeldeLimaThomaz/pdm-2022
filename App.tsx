@@ -1,7 +1,7 @@
 import * as React from "react";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { NavigationContainer } from "@react-navigation/native";
-
+import { Text } from "react-native";
 import Home from "./src/screens/Home";
 import MyAgenda from "./src/screens/MyAgenda";
 import TimeLine from "./src/screens/TimeLine";
@@ -11,75 +11,25 @@ import Timer from "./src/screens/Timer";
 import CreateRecipe from "./src/screens/CreateRecipe";
 import RecipeDetails from "./src/screens/RecipeDetails";
 
+import firebaseConfig from "./src/config/firebaseConfig";
+import useFirebase from "./src/hooks/useFirebase";
+
 import MenuDrawerContent from "./src/components/MenuDrawerContent";
 import { AppContext } from "./src/contexts/AppContext";
 
-import config from "./src/database/config";
-import { createConnection } from "typeorm";
 import HeaderRight from "./src/components/HeaderRight";
 
 const Drawer = createDrawerNavigator();
 
 export default function App() {
-  // add a useCallback hook
-  const connect = React.useCallback(async () => {
-    try {
-      const connection = await createConnection(config); // create a connection with our config
-
-      // await connection.getRepository("Recipe").save({
-      //   title: "Marta Rocha",
-      // });
-
-      // await connection.getRepository("Recipe").save({
-      //   title: "Limão Siciliano",
-      // });
-
-      // await connection.getRepository("Recipe").save({
-      //   title: "Chocolatudo",
-      // });
-
-      // await connection.getRepository("Ingredient").save({
-      //   title: "leite condensado",
-      // });
-      // await connection.query("DELETE FROM ingredient");
-
-      // await connection.getRepository("Ingredient").save({
-      //   title: "creme de leite",
-      // });
-
-      // await connection.getRepository("Ingredient").save({
-      //   title: "chocolate preto ao leite",
-      // });
-
-      // await connection.getRepository("Ingredient").save({
-      //   title: "chocolate preto meio amargo",
-      // });
-
-      // await connection.getRepository("Ingredient").save({
-      //   title: "chocolate branco",
-      // });
-
-      //await connection.query("DELETE FROM ingredient WHERE id = 3");
-
-      //const cakes = await connection.getRepository("Recipe").find();
-      const ingredients = await connection.getRepository("Ingredient").find();
-      console.log(ingredients);
-    } catch (error) {
-      console.log(error); // check (or deal) with connection errors
-    }
-  }, []);
-
-  // Important: connect inside a dependency-free useEffect hook to avoid multiple calls.
-  React.useEffect(() => {
-    connect(); // this must be done once in the App's entry point (I suggest here in App.js)
-  }, []);
-
   const [searchBarVisible, setSearchBarVisible] = React.useState(false);
-
   const appContext = {
     searchBarVisible,
     setSearchBarVisible,
   };
+  const firebaseApp = useFirebase(firebaseConfig);
+
+  if (!firebaseApp) return <Text>Loading...</Text>;
 
   return (
     <AppContext.Provider value={appContext}>

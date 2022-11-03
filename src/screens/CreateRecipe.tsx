@@ -148,7 +148,6 @@ const Recipes = ({}: { navigation: any }) => {
           width: cardWidth,
           backgroundColor: "#EF3762",
           borderRadius: 10,
-          marginBottom: 10,
         }}
       >
         <View
