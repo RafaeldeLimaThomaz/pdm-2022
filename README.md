@@ -45,3 +45,23 @@ Timer feature allows users to keep track of cooking time of different ingredient
 ## TimeLine
 
 <img src="https://github.com/RafaeldeLimaThomaz/pdm-2022/blob/main/assets/TimeLine.png" width="80%" height="80%"/>
+
+
+
+
+Already Working:  
+
+✓ CRUD in firebase  
+✓ Login Page FrontEnd  
+✓ Alerts  
+✓ Agenda  
+✓ Recipes search & display  
+
+To be done:  
+
+x Login Backend (FaceBook/Google Authentication)  
+x Business rules (ingredient -> recipe -> client order -> shopping list)  
+x DataBase relation using Firebase  
+x Notifications for due dates  
+x Daily TimeLine  
+
