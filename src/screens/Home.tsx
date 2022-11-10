@@ -1,16 +1,10 @@
 import React from "react";
-import {
-  useWindowDimensions,
-  View,
-  Image,
-  ScrollView,
-  Text,
-  StyleSheet,
-  Button,
-} from "react-native";
+import { View, Text, StyleSheet, Image } from "react-native";
 import useReference from "../hooks/useReference";
 import useAuth from "../hooks/useAuth";
 import useList from "../hooks/useList";
+import { TextInput, TouchableOpacity } from "react-native-gesture-handler";
+import { Card, Icon } from "react-native-elements";
 
 const Home = ({}: { navigation: any }) => {
   // error
@@ -32,7 +26,7 @@ const Home = ({}: { navigation: any }) => {
   );
 
   const handleUpdate = () => {
-    setMyRef("RandVal: " + Math.random());
+    setMyRef("RandVal: " + (1.0 + Math.random()));
   };
 
   // ============================================ List Example
@@ -64,33 +58,158 @@ const Home = ({}: { navigation: any }) => {
     }
   };
 
-  // return (
-  //   <View style={{ backgroundColor: "#5CE1E6", flex: 1 }}>
-  //     <Image
-  //       source={require("../../assets/HomeScreen.gif")}
-  //       style={{
-  //         width: useWindowDimensions().width,
-  //         height: useWindowDimensions().height * 0.9,
-  //       }}
-  //     ></Image>
-  //   </View>
-  // );
-
   return (
     <View style={styles.container}>
-      <ScrollView>
-        <Text>User: {user?.email}</Text>
-        <Button title="login" onPress={handleLogin} />
-        <Button title="logout" onPress={handleLogout} />
+      <Card
+        containerStyle={{
+          backgroundColor: "#e5fffc",
+          borderRadius: 10,
+        }}
+      >
+        {/* <Text>User: {user?.email}</Text> */}
+        <View
+          style={{
+            marginTop: 70,
+            alignItems: "center",
+            alignContent: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Image
+            source={require("../../assets/easyCakeHome.png")}
+            style={{ width: 240, height: 120 }}
+          ></Image>
+        </View>
+        <View
+          style={{
+            alignItems: "center",
+            marginTop: -60,
+          }}
+        >
+          <TextInput
+            style={{
+              backgroundColor: "white",
+              width: 300,
+              height: 40,
+              borderRadius: 5,
+              marginTop: 100,
+              margin: 5,
+              borderWidth: 1,
+              borderColor: "green",
+            }}
+            placeholder={"    Usuário, número de celular ou email"}
+          ></TextInput>
 
-        <Text>Single Ref: {myRef}</Text>
-        <Button title="Update Reference" onPress={handleUpdate} />
+          <TextInput
+            style={{
+              backgroundColor: "white",
+              width: 300,
+              height: 40,
+              margin: 5,
+              borderRadius: 5,
+              borderWidth: 1,
+              borderColor: "green",
+            }}
+            placeholder={"    Senha"}
+          ></TextInput>
 
-        <Text>List: {JSON.stringify(books.data)}</Text>
-        <Button title="List Create" onPress={handleListCreate} />
-        <Button title="List Delete (first)" onPress={handleListDelete} />
-        <Button title="List Update (first)" onPress={handleListUpdate} />
-      </ScrollView>
+          <TouchableOpacity onPress={handleLogin} style={styles.buttons}>
+            <Text style={{ color: "white", alignItems: "center" }}>LOGIN</Text>
+          </TouchableOpacity>
+
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "center",
+              alignContent: "center",
+              alignItems: "center",
+              margin: 20,
+            }}
+          >
+            <Text style={{ color: "#69957c" }}>Ainda não tem uma conta?</Text>
+            <TouchableOpacity>
+              <Text style={{ fontWeight: "bold", color: "#0d4a27" }}>
+                {" "}
+                Cadastrar.
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+        {/* <TouchableOpacity onPress={handleLogout} style={styles.loginButtons}>
+        <Text style={{ color: "white", alignItems: "center" }}>LOGOUT</Text>
+      </TouchableOpacity> */}
+        {/* <Text>Single Ref: {myRef}</Text>
+
+      <TouchableOpacity onPress={handleUpdate} style={styles.loginButtons}>
+        <Text style={{ color: "white", alignItems: "center" }}>
+          UPDATE REFERENCE
+        </Text>
+      </TouchableOpacity> */}
+        {/* <TouchableOpacity onPress={handleListCreate} style={styles.loginButtons}>
+        <Text style={{ color: "white", alignItems: "center" }}>
+          LIST CREATE
+        </Text>
+      </TouchableOpacity>
+
+      <Text>List: {JSON.stringify(books.data)}</Text>
+
+      <TouchableOpacity onPress={handleListDelete} style={styles.loginButtons}>
+        <Text style={{ color: "white", alignItems: "center" }}>
+          LIST DELETE
+        </Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity onPress={handleListUpdate} style={styles.loginButtons}>
+        <Text style={{ color: "white", alignItems: "center" }}>
+          LIST UPDATE
+        </Text>
+      </TouchableOpacity> */}
+        <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+          <Text style={{ color: "green" }}>
+            ----------------------------------
+          </Text>
+          <Text style={{ color: "green" }}>OU</Text>
+          <Text style={{ color: "green" }}>
+            ----------------------------------
+          </Text>
+        </View>
+
+        <View
+          style={{
+            flexDirection: "column",
+            marginTop: 20,
+            alignContent: "space-between",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <TouchableOpacity onPress={handleLogin} style={styles.facebookButton}>
+            <Icon
+              name={"facebook"}
+              type={"entypo"}
+              tvParallaxProperties={undefined}
+              color={"white"}
+            ></Icon>
+            <Text
+              style={{ color: "white", alignItems: "center", marginLeft: 20 }}
+            >
+              Logar com Facebook
+            </Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={handleLogin} style={styles.googleButton}>
+            <Icon
+              name={"google"}
+              type={"font-awesome"}
+              tvParallaxProperties={undefined}
+              color={"white"}
+            ></Icon>
+            <Text style={{ color: "white", alignItems: "center" }}>
+              Logar com Google
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </Card>
     </View>
   );
 };
@@ -99,9 +218,41 @@ export default Home;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 24,
-    backgroundColor: "#fff",
+    backgroundColor: "#c7ffff",
+    alignItems: "center",
+  },
+  buttons: {
+    marginTop: 15,
+    width: 300,
+    height: 40,
+    backgroundColor: "green",
+    alignContent: "center",
     alignItems: "center",
     justifyContent: "center",
+    borderRadius: 5,
+  },
+
+  facebookButton: {
+    flexDirection: "row",
+    marginTop: 15,
+    width: 300,
+    height: 40,
+    backgroundColor: "#3c5a9a",
+    alignContent: "center",
+    alignItems: "center",
+    justifyContent: "space-evenly",
+    borderRadius: 5,
+  },
+
+  googleButton: {
+    flexDirection: "row",
+    marginTop: 15,
+    width: 300,
+    height: 40,
+    backgroundColor: "#252424",
+    alignContent: "center",
+    alignItems: "center",
+    justifyContent: "space-evenly",
+    borderRadius: 5,
   },
 });

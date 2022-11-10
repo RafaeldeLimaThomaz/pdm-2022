@@ -248,6 +248,41 @@ const Recipes = ({}: { navigation: any }) => {
         <View style={{ marginBottom: 15 }}></View>
         <Card.Divider color="white" width={1} />
       </Card>
+
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "space-between",
+          margin: 20,
+          marginBottom: 40,
+        }}
+      >
+        <TouchableOpacity
+          style={{
+            backgroundColor: "green",
+            width: 120,
+            height: 40,
+            borderRadius: 5,
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Text style={{ color: "white" }}>Salvar</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={{
+            backgroundColor: "green",
+            width: 120,
+            height: 40,
+            borderRadius: 5,
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Text style={{ color: "white" }}>Descartar</Text>
+        </TouchableOpacity>
+      </View>
     </ScrollView>
   );
 };
