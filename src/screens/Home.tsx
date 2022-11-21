@@ -5,6 +5,7 @@ import useAuth from "../hooks/useAuth";
 import useList from "../hooks/useList";
 import { TextInput, TouchableOpacity } from "react-native-gesture-handler";
 import { Card, Icon } from "react-native-elements";
+import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
 
 const Home = ({}: { navigation: any }) => {
   // error
@@ -197,7 +198,17 @@ const Home = ({}: { navigation: any }) => {
             </Text>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={handleLogin} style={styles.googleButton}>
+          <TouchableOpacity
+            onPress={async () => {
+              const credentials = await createUserWithEmailAndPassword(
+                getAuth(),
+                "DziZus@IGLA.com",
+                "654321"
+              );
+              console.log(credentials);
+            }}
+            style={styles.googleButton}
+          >
             <Icon
               name={"google"}
               type={"font-awesome"}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Text,
   StyleSheet,
@@ -10,12 +10,70 @@ import {
 import StarCounter from "../components/StarCounter";
 import { Card, Icon } from "react-native-elements";
 import { ScrollView } from "react-native-gesture-handler";
+import useList from "../hooks/useList";
+import useReference from "../hooks/useReference";
+import listToArray from "../services/listToArray";
+import SearchableDropdown from "react-native-searchable-dropdown";
 
-const Recipes = ({}: { navigation: any }) => {
-  const [title, LonChangeText] = React.useState("");
-  const [description, onChangeNumber] = React.useState("");
+const Recipes = ({ navigation }: { navigation: any }) => {
   const cardWidth = useWindowDimensions().width * 0.9;
   const width = useWindowDimensions().width * 0.6;
+
+  const [recipeName, setRecipeName] = useState("");
+  const [recipeDescription, setRecipeDescription] = useState("");
+  const [recipeDirections, setRecipeDirections] = useState("");
+
+  const recipes = useList("recipes");
+  const ingredients = useList("ingredients");
+
+  const handleRecipeCreate = () => {
+    recipes.create({
+      name: recipeName,
+      description: recipeDescription,
+      directions: recipeDirections,
+    });
+  };
+
+  const handleIngredientCreate = () => {
+    ingredients.create({
+      name: "leite condensado",
+    });
+    ingredients.create({
+      name: "creme de leite",
+    });
+    ingredients.create({
+      name: "açúcar",
+    });
+    ingredients.create({
+      name: "sal",
+    });
+    ingredients.create({
+      name: "morango",
+    });
+    ingredients.create({
+      name: "frutas vermelhas",
+    });
+    ingredients.create({
+      name: "farinha de trigo",
+    });
+  };
+
+  const discardRecipe = () => {
+    setRecipeName("");
+    setRecipeDescription("");
+    setRecipeDirections("");
+
+    navigation.navigate("Receitas", { body: "agenda" });
+  };
+
+  const [currentVal, setCurrentVal] = useReference("/ingredients");
+  console.log(currentVal);
+  let sortedIngredients: any[] = [];
+  let ingredientsArray = listToArray(currentVal);
+  for (let i = 0; i < ingredientsArray.length; i++) {
+    sortedIngredients[i] = ingredientsArray[i].name;
+  }
+  console.log(sortedIngredients.sort());
 
   return (
     <ScrollView
@@ -42,8 +100,7 @@ const Recipes = ({}: { navigation: any }) => {
           placeholder="Nome"
           textAlign={"center"}
           placeholderTextColor={"white"}
-          onChangeText={undefined}
-          value={title}
+          onChangeText={(value) => setRecipeName(value)}
         />
 
         <Card.Divider color="white" width={1} />
@@ -92,8 +149,7 @@ const Recipes = ({}: { navigation: any }) => {
             placeholder={"Descrição"}
             placeholderTextColor={"white"}
             textAlign={"center"}
-            onChangeText={undefined}
-            value={description}
+            onChangeText={(value) => setRecipeDescription(value)}
           ></TextInput>
         </View>
 
@@ -182,6 +238,7 @@ const Recipes = ({}: { navigation: any }) => {
               width: 100,
               height: 30,
             }}
+            onPress={() => alert("HOLLA")}
           >
             <Icon
               name="plus"
@@ -194,7 +251,92 @@ const Recipes = ({}: { navigation: any }) => {
           </TouchableOpacity>
         </View>
 
-        <View style={{ marginBottom: 10 }}></View>
+        <View style={{ marginTop: 10, marginBottom: 10, alignItems: "center" }}>
+          <SearchableDropdown
+            onTextChange={(text: any) => console.log(text)}
+            //On text change listner on the searchable input
+            onItemSelect={(item: any) => alert(JSON.stringify(item))}
+            //onItemSelect called after the selection from the dropdown
+            containerStyle={{ padding: 2 }}
+            //suggestion container style
+            textInputStyle={{
+              //inserted text style
+              padding: 12,
+              height: 40,
+              color: "white",
+              borderWidth: 1,
+              borderRadius: 10,
+              borderColor: "#fff",
+              backgroundColor: "#FF4984",
+            }}
+            itemStyle={{
+              //single dropdown item style
+              padding: 10,
+              marginTop: 4,
+              borderRadius: 5,
+              backgroundColor: "#FF4984",
+              borderColor: "#FF4984",
+              borderWidth: 1,
+            }}
+            itemTextStyle={{
+              //text style of a single dropdown item
+              color: "#fff",
+            }}
+            itemsContainerStyle={{
+              //items container style you can pass maxHeight
+              //to restrict the items dropdown hieght
+              maxHeight: "61.8%",
+            }}
+            items={ingredientsArray}
+            //mapping of item array
+            defaultIndex={2}
+            //default selected item index
+            placeholder={
+              String.fromCodePoint(0x1f34b) + "   Pesquisar Ingrediente  "
+            }
+            placeholderTextColor={"#feeef3"}
+            //place holder for the search input
+            resetValue={false}
+            //reset textInput Value with true and false state
+            underlineColorAndroid="transparent"
+            //To remove the underline from the android input
+          />
+        </View>
+        <View
+          style={{
+            justifyContent: "center",
+            flexDirection: "row",
+            alignContent: "center",
+            alignItems: "center",
+
+            marginBottom: 5,
+          }}
+        >
+          <Text
+            style={{
+              alignContent: "center",
+              alignItems: "center",
+              justifyContent: "center",
+              fontSize: 13,
+              color: "#ffe3e3",
+            }}
+          >
+            Não encontrou?
+          </Text>
+          <TouchableOpacity>
+            <Text
+              style={{
+                color: "white",
+                fontWeight: "bold",
+                fontSize: 13,
+                marginLeft: 4,
+              }}
+            >
+              Cadastrar ingrediente.
+            </Text>
+          </TouchableOpacity>
+        </View>
+
         <Card.Divider color="white" width={1} />
       </Card>
 
@@ -240,8 +382,7 @@ const Recipes = ({}: { navigation: any }) => {
             placeholder={"Insira um texto"}
             placeholderTextColor={"white"}
             textAlign={"center"}
-            onChangeText={undefined}
-            value={description}
+            onChangeText={(value) => setRecipeDirections(value)}
           ></TextInput>
         </View>
 
@@ -259,28 +400,47 @@ const Recipes = ({}: { navigation: any }) => {
       >
         <TouchableOpacity
           style={{
-            backgroundColor: "green",
-            width: 120,
+            flexDirection: "row",
+            backgroundColor: "#005b00",
+            width: 140,
             height: 40,
-            borderRadius: 5,
+            borderRadius: 20,
+            marginRight: 20,
             alignItems: "center",
+            alignContent: "center",
             justifyContent: "center",
           }}
+          onPress={handleRecipeCreate}
         >
-          <Text style={{ color: "white" }}>Salvar</Text>
+          <Icon
+            name={"save"}
+            type={"material"}
+            color={"white"}
+            tvParallaxProperties={undefined}
+          ></Icon>
+          <Text style={{ color: "white", margin: 10 }}>Salvar</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={{
-            backgroundColor: "green",
-            width: 120,
+            backgroundColor: "#9d0909",
+            flexDirection: "row",
+            marginLeft: 20,
+            width: 140,
             height: 40,
-            borderRadius: 5,
+            borderRadius: 20,
             alignItems: "center",
             justifyContent: "center",
           }}
+          onPress={discardRecipe}
         >
-          <Text style={{ color: "white" }}>Descartar</Text>
+          <Icon
+            name={"delete"}
+            type={"material"}
+            color={"white"}
+            tvParallaxProperties={undefined}
+          ></Icon>
+          <Text style={{ color: "white", margin: 10 }}>Descartar</Text>
         </TouchableOpacity>
       </View>
     </ScrollView>
@@ -311,6 +471,9 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     textAlign: "center",
     marginBottom: 10,
+  },
+  textInput: {
+    color: "white",
   },
   container: {
     flex: 1,
