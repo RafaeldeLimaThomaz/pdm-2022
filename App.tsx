@@ -18,6 +18,7 @@ import MenuDrawerContent from "./src/components/MenuDrawerContent";
 import { AppContext } from "./src/contexts/AppContext";
 
 import HeaderRight from "./src/components/HeaderRight";
+import AppModal from "./src/components/AppModal";
 
 const Drawer = createDrawerNavigator();
 
@@ -32,29 +33,31 @@ export default function App() {
   if (!firebaseApp) return <Text>Loading...</Text>;
 
   return (
-    <AppContext.Provider value={appContext}>
-      <NavigationContainer>
-        <Drawer.Navigator
-          drawerContent={(props) => <MenuDrawerContent {...props} />}
-          initialRouteName="Home"
-        >
-          <Drawer.Screen name="Home" component={Home} />
-          <Drawer.Screen name="Agenda" component={MyAgenda} />
-          <Drawer.Screen name="Cronograma" component={TimeLine} />
-          <Drawer.Screen
-            name="Receitas"
-            component={Recipes}
-            options={{
-              headerRight: () => <HeaderRight />,
-            }}
-          />
+    <AppModal>
+      <AppContext.Provider value={appContext}>
+        <NavigationContainer>
+          <Drawer.Navigator
+            drawerContent={(props) => <MenuDrawerContent {...props} />}
+            initialRouteName="Home"
+          >
+            <Drawer.Screen name="Home" component={Home} />
+            <Drawer.Screen name="Agenda" component={MyAgenda} />
+            <Drawer.Screen name="Cronograma" component={TimeLine} />
+            <Drawer.Screen
+              name="Receitas"
+              component={Recipes}
+              options={{
+                headerRight: () => <HeaderRight />,
+              }}
+            />
 
-          <Drawer.Screen name="Lista de compras" component={ShoppingList} />
-          <Drawer.Screen name="Timer" component={Timer} />
-          <Drawer.Screen name="Criar Receita" component={CreateRecipe} />
-          <Drawer.Screen name="Receita Detalhada" component={RecipeDetails} />
-        </Drawer.Navigator>
-      </NavigationContainer>
-    </AppContext.Provider>
+            <Drawer.Screen name="Lista de compras" component={ShoppingList} />
+            <Drawer.Screen name="Timer" component={Timer} />
+            <Drawer.Screen name="Criar Receita" component={CreateRecipe} />
+            <Drawer.Screen name="Receita Detalhada" component={RecipeDetails} />
+          </Drawer.Navigator>
+        </NavigationContainer>
+      </AppContext.Provider>
+    </AppModal>
   );
 }

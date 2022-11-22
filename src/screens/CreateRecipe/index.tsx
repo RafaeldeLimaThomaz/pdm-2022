@@ -1,21 +1,22 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
-  Text,
   StyleSheet,
+  Text,
   TextInput,
+  TouchableOpacity,
   useWindowDimensions,
   View,
-  TouchableOpacity,
 } from "react-native";
-import StarCounter from "../components/StarCounter";
 import { Card, Icon } from "react-native-elements";
 import { ScrollView } from "react-native-gesture-handler";
-import useList from "../hooks/useList";
-import useReference from "../hooks/useReference";
-import listToArray from "../services/listToArray";
-import SearchableDropdown from "react-native-searchable-dropdown";
+import { ModalContext } from "../../components/AppModal";
+import StarCounter from "../../components/StarCounter";
+import useList from "../../hooks/useList";
+import AddIngredientModal from "./AddIngredientModal";
 
 const Recipes = ({ navigation }: { navigation: any }) => {
+  const appModal = useContext(ModalContext);
+
   const cardWidth = useWindowDimensions().width * 0.9;
   const width = useWindowDimensions().width * 0.6;
 
@@ -24,39 +25,53 @@ const Recipes = ({ navigation }: { navigation: any }) => {
   const [recipeDirections, setRecipeDirections] = useState("");
 
   const recipes = useList("recipes");
-  const ingredients = useList("ingredients");
+
+  console.log(recipes);
+  // const ingredients = useList("ingredients");
+
+  const [recipeIngredients, setRecipeIngredients] = useState<Array<any>>([]);
 
   const handleRecipeCreate = () => {
     recipes.create({
       name: recipeName,
       description: recipeDescription,
       directions: recipeDirections,
+      ingredients: recipeIngredients,
     });
   };
 
-  const handleIngredientCreate = () => {
-    ingredients.create({
-      name: "leite condensado",
+  const handleAddIngredientToRecipe = (ingredient: any) => {
+    setRecipeIngredients((value) => {
+      value.push(ingredient);
+      return value;
     });
-    ingredients.create({
-      name: "creme de leite",
-    });
-    ingredients.create({
-      name: "açúcar",
-    });
-    ingredients.create({
-      name: "sal",
-    });
-    ingredients.create({
-      name: "morango",
-    });
-    ingredients.create({
-      name: "frutas vermelhas",
-    });
-    ingredients.create({
-      name: "farinha de trigo",
-    });
+
+    console.log("Ingredient on parent: ", ingredient);
   };
+
+  // const handleIngredientCreate = () => {
+  //   ingredients.create({
+  //     name: "leite condensado",
+  //   });
+  //   ingredients.create({
+  //     name: "creme de leite",
+  //   });
+  //   ingredients.create({
+  //     name: "açúcar",
+  //   });
+  //   ingredients.create({
+  //     name: "sal",
+  //   });
+  //   ingredients.create({
+  //     name: "morango",
+  //   });
+  //   ingredients.create({
+  //     name: "frutas vermelhas",
+  //   });
+  //   ingredients.create({
+  //     name: "farinha de trigo",
+  //   });
+  // };
 
   const discardRecipe = () => {
     setRecipeName("");
@@ -65,15 +80,6 @@ const Recipes = ({ navigation }: { navigation: any }) => {
 
     navigation.navigate("Receitas", { body: "agenda" });
   };
-
-  const [currentVal, setCurrentVal] = useReference("/ingredients");
-  console.log(currentVal);
-  let sortedIngredients: any[] = [];
-  let ingredientsArray = listToArray(currentVal);
-  for (let i = 0; i < ingredientsArray.length; i++) {
-    sortedIngredients[i] = ingredientsArray[i].name;
-  }
-  console.log(sortedIngredients.sort());
 
   return (
     <ScrollView
@@ -238,7 +244,11 @@ const Recipes = ({ navigation }: { navigation: any }) => {
               width: 100,
               height: 30,
             }}
-            onPress={() => alert("HOLLA")}
+            onPress={() =>
+              appModal.show(
+                <AddIngredientModal onAdd={handleAddIngredientToRecipe} />
+              )
+            }
           >
             <Icon
               name="plus"
@@ -251,57 +261,6 @@ const Recipes = ({ navigation }: { navigation: any }) => {
           </TouchableOpacity>
         </View>
 
-        <View style={{ marginTop: 10, marginBottom: 10, alignItems: "center" }}>
-          <SearchableDropdown
-            onTextChange={(text: any) => console.log(text)}
-            //On text change listner on the searchable input
-            onItemSelect={(item: any) => alert(JSON.stringify(item))}
-            //onItemSelect called after the selection from the dropdown
-            containerStyle={{ padding: 2 }}
-            //suggestion container style
-            textInputStyle={{
-              //inserted text style
-              padding: 12,
-              height: 40,
-              color: "white",
-              borderWidth: 1,
-              borderRadius: 10,
-              borderColor: "#fff",
-              backgroundColor: "#FF4984",
-            }}
-            itemStyle={{
-              //single dropdown item style
-              padding: 10,
-              marginTop: 4,
-              borderRadius: 5,
-              backgroundColor: "#FF4984",
-              borderColor: "#FF4984",
-              borderWidth: 1,
-            }}
-            itemTextStyle={{
-              //text style of a single dropdown item
-              color: "#fff",
-            }}
-            itemsContainerStyle={{
-              //items container style you can pass maxHeight
-              //to restrict the items dropdown hieght
-              maxHeight: "61.8%",
-            }}
-            items={ingredientsArray}
-            //mapping of item array
-            defaultIndex={2}
-            //default selected item index
-            placeholder={
-              String.fromCodePoint(0x1f34b) + "   Pesquisar Ingrediente  "
-            }
-            placeholderTextColor={"#feeef3"}
-            //place holder for the search input
-            resetValue={false}
-            //reset textInput Value with true and false state
-            underlineColorAndroid="transparent"
-            //To remove the underline from the android input
-          />
-        </View>
         <View
           style={{
             justifyContent: "center",
