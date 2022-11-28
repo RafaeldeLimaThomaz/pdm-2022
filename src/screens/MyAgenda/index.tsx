@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { View, Text } from "react-native";
 import {
   Agenda,
@@ -8,8 +8,11 @@ import {
 } from "react-native-calendars";
 import { Avatar, Card } from "react-native-paper";
 import { Icon } from "react-native-elements";
+import { ModalContext } from "../../components/AppModal";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import { languageConfig } from "../languageConfig";
+import { languageConfig } from "../../languageConfig";
+import AddIngredientModal from "../CreateRecipe/AddIngredientModal";
+import AddOrderModal from "./AddOrderModal";
 
 LocaleConfig.locales["pt"] = {
   monthNames: languageConfig.months,
@@ -27,10 +30,13 @@ const MyAgenda = ({}: { navigation: any }) => {
   };
 
   const [items, setItems] = React.useState({});
+  const appModal = useContext(ModalContext);
+
+  const handleAddIngredientToRecipe = (ingredient: any) => {};
 
   const loadItems = (day: DateData) => {
     setTimeout(() => {
-      for (let i = -15; i < 85; i++) {
+      for (let i = 0; i < 8; i++) {
         const time = day.timestamp + i * 24 * 60 * 60 * 1000;
         const strTime = timeToString(time);
 
@@ -40,8 +46,8 @@ const MyAgenda = ({}: { navigation: any }) => {
           const numItems = 1;
           for (let j = 0; j < numItems; j++) {
             items[strTime].push({
-              name: "Pedido 01",
-              height: Math.max(50, Math.floor(Math.random() * 150)),
+              name: "Pedido " + 0 + (j + 1),
+              height: 4,
               day: strTime,
             });
           }
@@ -59,7 +65,14 @@ const MyAgenda = ({}: { navigation: any }) => {
   const renderItem = (item: { name: string }) => {
     return (
       <View style={{ marginRight: 10, marginTop: 17 }}>
-        <Card style={{ backgroundColor: "#faffef" }}>
+        <Card
+          style={{
+            backgroundColor: "#fff5f9",
+            borderRadius: 10,
+            borderWidth: 2,
+            borderColor: "#fa538d",
+          }}
+        >
           <Card.Content>
             <View
               style={{
@@ -73,21 +86,23 @@ const MyAgenda = ({}: { navigation: any }) => {
                   flexDirection: "column",
                   justifyContent: "space-between",
                   alignItems: "center",
+                  margin: 10,
                 }}
               >
-                <Text style={{ color: "#222222", paddingTop: 10 }}>
+                <Text
+                  style={{
+                    color: "#ab083c",
+                    paddingTop: 10,
+                    alignContent: "center",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    fontWeight: "bold",
+                  }}
+                >
                   {item.name}
                 </Text>
-                <Text style={{ color: "#222222", paddingTop: 5 }}>
-                  {"     "}- Espanhóis
-                </Text>
-                <Text style={{ color: "#222222", paddingTop: 5 }}>
-                  - Ingleses
-                </Text>
-                <Text style={{ color: "#222222", paddingTop: 5 }}>
-                  - Italianos
-                </Text>
               </View>
+
               <Avatar.Text label="XD" style={{ backgroundColor: "#EF3762" }} />
             </View>
             <View style={{ flexDirection: "row", paddingTop: 30 }}>
@@ -96,9 +111,11 @@ const MyAgenda = ({}: { navigation: any }) => {
                   marginLeft: 10,
                   borderRadius: 5,
                 }}
-                onPress={() => {
-                  alert("Editar");
-                }}
+                onPress={() =>
+                  appModal.show(
+                    <AddOrderModal onAdd={handleAddIngredientToRecipe} />
+                  )
+                }
               >
                 <Icon
                   name="edit"
@@ -142,12 +159,10 @@ const MyAgenda = ({}: { navigation: any }) => {
         renderItem={renderItem}
         showClosingKnob={true}
         theme={{
-          //textDayFontWeight: "bold",
-
           agendaDayTextColor: "#EF3762",
           agendaDayNumColor: "#055A43",
-          agendaTodayColor: "#055A43",
-          agendaKnobColor: "blue",
+          agendaTodayColor: "#EF3762",
+          agendaKnobColor: "#10bcd0",
         }}
       />
     </View>

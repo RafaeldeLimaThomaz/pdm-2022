@@ -1,4 +1,5 @@
-import { View, Text, Button } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
+import { Picker } from "@react-native-picker/picker";
 import React, { useContext, useState } from "react";
 import { ModalContext } from "../../../components/AppModal";
 import SearchableDropdown from "react-native-searchable-dropdown";
@@ -6,7 +7,7 @@ import useReference from "../../../hooks/useReference";
 import listToArray from "../../../services/listToArray";
 
 import styles from "./styles";
-
+import { TextInput } from "react-native-gesture-handler";
 interface AddIngredientModalProps {
   onAdd: Function;
 }
@@ -15,10 +16,12 @@ export default function AddIngredientModal({ onAdd }: AddIngredientModalProps) {
   const appModal = useContext(ModalContext);
 
   const [selectedIgredient, setSelectedIgredient] = useState(null);
+  const [selectedMeasure, setSelectedMeasure] = useState("ml");
 
   const [currentVal, setCurrentVal] = useReference("/ingredients");
   if (currentVal == null) return <Text>Loading...</Text>;
   let ingredientsArray = listToArray(currentVal);
+  console.log(ingredientsArray);
 
   const handleCancel = () => {
     appModal.hide();
@@ -31,35 +34,93 @@ export default function AddIngredientModal({ onAdd }: AddIngredientModalProps) {
   };
 
   return (
-    <View>
+    <View
+      style={{
+        justifyContent: "center",
+        alignContent: "center",
+        alignItems: "center",
+      }}
+    >
       <SearchableDropdown
-        // onTextChange={(text: any) => console.log(text)}
-        //On text change listner on the searchable input
         selectedItems={selectedIgredient}
         onItemSelect={(item: any) => setSelectedIgredient(item)}
-        //onItemSelect called after the selection from the dropdown
         containerStyle={{ padding: 2 }}
-        //suggestion container style
         textInputStyle={styles.textInputStyle}
         itemStyle={styles.itemStyle}
         itemTextStyle={styles.itemTextStyle}
         itemsContainerStyle={styles.itemsContainerStyle}
         items={ingredientsArray}
-        //mapping of item array
         defaultIndex={2}
-        //default selected item index
         placeholder={
           String.fromCodePoint(0x1f34b) + "   Pesquisar Ingrediente  "
         }
         placeholderTextColor={"#feeef3"}
-        //place holder for the search input
         resetValue={false}
-        //reset textInput Value with true and false state
         underlineColorAndroid="transparent"
-        //To remove the underline from the android input
       />
-      <Button title="Cancelar" onPress={handleCancel} />
-      <Button title="Adicionar" onPress={handleAdd} />
+
+      <TextInput
+        style={{
+          width: 180,
+          height: 40,
+          backgroundColor: "#FF4984",
+          margin: 10,
+          padding: 10,
+          borderRadius: 10,
+          color: "white",
+        }}
+        keyboardType="numeric"
+        placeholder={"Quantidade"}
+        placeholderTextColor={"#ffd3e1"}
+      ></TextInput>
+      <Picker
+        selectedValue={selectedMeasure}
+        style={{
+          width: 180,
+          backgroundColor: "#FF4984",
+          color: "white",
+        }}
+        onValueChange={(itemValue, itemIndex) => setSelectedMeasure(itemValue)}
+      >
+        <Picker.Item label="  gramas" value="grama" />
+        <Picker.Item label="  ml" value="ml" />
+        <Picker.Item label="  colher de chá" value="colher chá" />
+        <Picker.Item label="  colher de sopa" value="colher sopa" />
+        <Picker.Item label="  pacote" value="pacote" />
+        <Picker.Item label="  caixa" value="caixa" />
+      </Picker>
+
+      <TouchableOpacity
+        onPress={handleCancel}
+        style={{
+          width: 180,
+          height: 30,
+          marginTop: 30,
+          margin: 5,
+          backgroundColor: "green",
+          alignContent: "center",
+          alignItems: "center",
+          justifyContent: "center",
+          borderRadius: 5,
+        }}
+      >
+        <Text style={{ color: "white" }}>Adicionar</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        onPress={handleAdd}
+        style={{
+          width: 180,
+          height: 30,
+          margin: 2,
+          backgroundColor: "#ab1a48",
+          alignContent: "center",
+          alignItems: "center",
+          justifyContent: "center",
+          borderRadius: 5,
+        }}
+      >
+        <Text style={{ color: "white" }}>Cancelar</Text>
+      </TouchableOpacity>
     </View>
   );
 }

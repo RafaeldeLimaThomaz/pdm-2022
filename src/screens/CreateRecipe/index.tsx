@@ -238,6 +238,7 @@ const Recipes = ({ navigation }: { navigation: any }) => {
               alignItems: "center",
               backgroundColor: "#FF4984",
               borderRadius: 30,
+              margin: 10,
               borderWidth: 1,
               borderStyle: "dashed",
               borderColor: "white",
